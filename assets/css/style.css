@@ -21,3 +21,15 @@ header p {
 section p {
   font-size: 1.5em;
 }
+
+section form {
+  font-size: 1.5em;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  gap: 5px;
+}
+
+section input {
+  width: 15%;
+}
