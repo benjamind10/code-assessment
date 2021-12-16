@@ -1,0 +1,23 @@
+:root {
+  ---primary: #2185d0;
+}
+
+* {
+  box-sizing: border-box;
+  box-shadow: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+header a,
+header p {
+  flex-wrap: wrap;
+  font-size: 1.5em;
+}
+
+section p {
+  font-size: 1.5em;
+}
