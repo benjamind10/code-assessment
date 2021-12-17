@@ -1,42 +1,64 @@
 :root {
-  ---primary: #2185d0;
+  --primary: #31682a;
+  --second: #4fee3a;
 }
 
 * {
   box-sizing: border-box;
   box-shadow: none;
+  font-family: 'Roboto', sans-serif;
 }
 
-header {
+#game-section,
+#answers-section,
+#gameover-section,
+#highscores-section {
+  display: none;
+}
+
+#header-section {
+  font-weight: bold;
   display: flex;
   justify-content: space-between;
 }
 
-header a,
-header p {
-  flex-wrap: wrap;
-  font-size: 1.5em;
+#header-section p {
+  margin: 0;
 }
 
-section p {
-  font-size: 1.5em;
+.container {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-section #buttons {
-  display: flex;
-  width: 15%;
-  flex-flow: column wrap;
-  gap: 5px;
-  margin: 2% auto;
-}
-
-.results-text {
-  color: rgb(163, 160, 160);
+.container {
   text-align: center;
 }
 
-#buttons button {
-  height: 55px;
-  background-color: rgb(46, 20, 70);
+.container h1 {
+  font-size: 3em;
+}
+
+button {
+  background-color: var(--primary);
+  border: none;
   color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 12px;
+}
+
+button:hover {
+  background-color: var(--second);
+  color: black;
+}
+
+a:link {
+  color: var(--primary);
 }

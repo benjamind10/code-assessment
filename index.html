@@ -5,43 +5,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Coding Assessment</title>
+    <title>Coding Quiz</title>
 </head>
 
 <body>
-    <header class="ui two item menu">
-        <a class="item" href="#highscores">High Scores</a>
-        <p class="item">Time:&nbsp<span id="timer">0</span></p>
+    <header id="header-section">
+        <a href="#high-scores" id="high-scores">High Scores</a>
+        <p id="timer">Time:&nbsp;<span id="timer">0</span></p>
     </header>
-    <section id="start-page" class="ui center aligned segment">
-        <div>
-            <h2>Coding Quiz</h2>
+    <section id="main-section">
+        <div id="main-text" class="container">
+            <h1>Coding Quiz</h1>
             <h4>Try to answer the following code questions within the allowed time. Incorrect answers will be penalized
-                with
-                10 seconds off the clock/score.
-            </h4>
-            <button id="btn-start" class="ui primary button">Start Quiz</button>
+                with 10 seconds off the clock/score.</h4>
+            <button id="main-btn">Start Quiz</button>
         </div>
     </section>
-    <section id="game-page" class="ui center aligned segment" style="display: none;">
-        <div id="questions"></div>
-        <div id="buttons">
-            <button id="a" onclick="validate('a')"></button>
-            <button id="b" onclick="validate('b')"></button>
-            <button id="c" onclick="validate('c')"></button>
-            <button id="d" onclick="validate('d')"></button>
+    <section id="game-section">
+        <div id="game-text" class="container">
+            <h1>Questions</h1>
+            <div id="buttons"></div>
         </div>
     </section>
-    <div id="results-page"></div>
-    <section id="gameover-page" class="ui center aligned segment" style="display: ;">
-        <h2>All Done!</h2>
+    <section id="answers-section">
+        <div id="answers-text" class="container">
+            <p></p>
+        </div>
     </section>
-
-
-
-
+    <section id="gameover-section">
+        <div id="gameover-text" class="container">
+            <h1>All Done!</h1>
+            <p></p>
+        </div>
+    </section>
+    <section id="highscores-section">
+        <div id="highscores-text" class="container">
+            <h1>High Scores</h1>
+            <p></p>
+        </div>
+    </section>
     <script src="./assets/js/script.js"></script>
 </body>
 
