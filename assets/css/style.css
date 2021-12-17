@@ -29,3 +29,14 @@ section #buttons {
   gap: 5px;
   margin: 2% auto;
 }
+
+.results-text {
+  color: rgb(163, 160, 160);
+  text-align: center;
+}
+
+#buttons button {
+  height: 55px;
+  background-color: rgb(46, 20, 70);
+  color: white;
+}

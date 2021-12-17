@@ -3,7 +3,8 @@ var mainBtn = document.getElementById('btn-start');
 var questionEl = document.getElementById('questions');
 var buttonsEl = document.getElementById('buttons');
 var gamePage = document.getElementById('game-page');
-var results = document.getElementById('result');
+var resultsPage = document.getElementById('results-page');
+var gameOverPage = document.getElementById('gameover-page');
 var btnA = document.getElementById('a');
 var btnB = document.getElementById('b');
 var btnC = document.getElementById('c');
@@ -28,7 +29,7 @@ var mainObj = [
       'booleans',
       'all of the above',
     ],
-    answer: 'c',
+    answer: 'd',
   },
   {
     title:
@@ -54,10 +55,11 @@ mainBtn.addEventListener('click', function () {
 
 function gameStart() {
   startPage.style.display = 'none';
-  genQuestion();
+  gameOverPage.style.display = 'none';
+  makeQuestions();
 }
 
-function genQuestion() {
+function makeQuestions() {
   gamePage.style.display = 'block';
   var activeQ = mainObj[currentIndex];
 
@@ -71,21 +73,24 @@ function genQuestion() {
   btnD.innerHTML = activeQ.options[3];
 }
 
-function validate(answer) {
+function validate(choice) {
   var final = mainObj[currentIndex].answer;
   var isChecked = document.createElement('p');
+  resultsPage.textContent = '';
 
-  if (answer === final && currentIndex != lastIndex) {
+  isChecked.className = 'results-text';
+
+  if (choice === final && currentIndex != lastIndex) {
     score++;
     currentIndex++;
-    isChecked.textContent = 'Correct';
-    results.appendChild(isChecked);
-    genQuestion();
-  } else if (answer != final && currentIndex != lastIndex) {
+    isChecked.textContent = 'Correct!';
+    resultsPage.appendChild(isChecked);
+    makeQuestions();
+  } else if (choice != final && currentIndex != lastIndex) {
     isChecked.textContent = 'Wrong!';
-    results.appendChild(isChecked);
+    resultsPage.appendChild(isChecked);
     currentIndex++;
-    genQuestion();
+    makeQuestions();
   } else {
     gameOver();
   }
@@ -93,5 +98,10 @@ function validate(answer) {
 
 function gameOver() {
   gamePage.style.display = 'none';
-  return score;
+  resultsPage.style.display = 'none';
+  gameOverPage.style.display = 'block';
+
+  var finalScore = document.createElement('h4');
+  finalScore.innerHTML = 'Your final score: ' + score;
+  gameOverPage.appendChild(finalScore);
 }
