@@ -1,46 +1,71 @@
-var mainButton = document.getElementById('main-button');
-var mTitle = document.getElementById('mTitle');
-var mBody = document.getElementById('body');
-var form = document.querySelector('form');
-var mChoices = document.querySelector('input');
+var startPage = document.getElementById('start-page');
+var mainBtn = document.getElementById('btn-start');
+var questionEl = document.getElementById('questions');
+var buttonsEl = document.getElementById('buttons');
+var quizPage = document.getElementById('quiz-page');
 
 var mainObj = [
   {
-    title: 'Coding Quiz Challenge',
-    body: 'Try to answer the following code questions within the allowed time. Incorrect answers will be penalized with 10 seconds off the clock/score.',
-  },
-  {
-    title: 'Commonly used data types DO NOT include:',
+    title: 'Commonly used data types DO NOT include ________:',
     options: ['strings', 'booleans', 'alerts', 'numbers'],
     answer: 'alerts',
   },
   {
-    title: 'The condition in an if / else statement is enclosed with?',
+    title: 'The condition in an if / else statement is enclosed with ________.',
     options: ['quotes', 'curly brackets', 'parenthesis', 'square brackets'],
+    answer: 'parenthesis',
+  },
+  {
+    title: 'Arrays in JavaScript can be used to store ________.',
+    options: [
+      'numbers and strings',
+      'other arrays',
+      'booleans',
+      'all of the above',
+    ],
+    answer: 'all of the above',
+  },
+  {
+    title:
+      'String values must be enclosed within ________ when being assigned to variables',
+    options: ['commas', 'curly brackets', 'quotes', 'parenthesis'],
+    answer: 'quotes',
+  },
+  {
+    title:
+      'A very useful tool during development and debugging for printing content to the debugger is ________.',
+    options: ['JavaScript', 'terminal/bash', 'for loops', 'console.log'],
+    answer: 'console.log',
   },
 ];
 
-mTitle.textContent = mainObj[0].title;
-mBody.textContent = mainObj[0].body;
+var currentIndex = 0;
+var lastIndex = mainObj.length;
 
-mainButton.addEventListener('click', function () {
-  mTitle.textContent = mainObj[1].title;
-  mainButton.style.display = 'none';
-  makeButton(mainObj[1].options);
+mainBtn.addEventListener('click', function () {
+  debugger;
+  gameStart();
 });
 
-form.addEventListener('click', function (e) {
-  console.log(e);
-});
+function gameStart() {
+  startPage.style.display = 'none';
+  genQuestions();
+}
 
-function makeButton(choices) {
-  mBody.textContent = '';
+function genQuestions() {
+  quizPage.style.display = 'flex';
+  questionEl.innerHTML = '<p>' + mainObj[currentIndex].title + '<p>';
+  quizPage.appendChild(questionEl);
+  makeButtons();
+}
 
+function makeButtons() {
+  var choices = mainObj[currentIndex].options;
   for (var i = 0; i < choices.length; i++) {
-    var btnChoice = document.createElement('input');
+    var btnChoice = document.createElement('button');
     btnChoice.className = 'ui button';
     btnChoice.type = 'button';
     btnChoice.value = choices[i];
-    form.appendChild(btnChoice);
+    buttonsEl.appendChild(btnChoice);
   }
 }

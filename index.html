@@ -12,20 +12,29 @@
 
 <body>
     <header class="ui two item menu">
-        <a class="item" href="./high-scores">High Scores</a>
+        <a class="item" href="#highscores">High Scores</a>
         <p class="item">Time:&nbsp<span id="timer">0</span></p>
-
     </header>
-    <section id="main-body" class="ui center aligned segment">
-        <h1 id="mTitle"></h1>
-        <div class="container">
-            <p id="body">
-            <form id="body"></form>
-            </p>
+    <section id="start-page" class="ui center aligned segment">
+        <div>
+            <h2>Coding Quiz</h2>
+            <h4>Try to answer the following code questions within the allowed time. Incorrect answers will be penalized
+                with
+                10 seconds off the clock/score.
+            </h4>
+            <button id="btn-start" class="ui primary button">Start Quiz</button>
         </div>
-        <button id="main-button" class="ui primary button">Start Quiz</button>
-
     </section>
+    <section id="quiz-page" class="ui center aligned segment" style="display: none;">
+        <div>
+            <div id="questions"></div>
+            <div id="buttons"><span>button placehodler</span></div>
+            <div id="result"></div>
+        </div>
+    </section>
+
+
+
     <script src="./assets/js/script.js"></script>
 </body>
 
