@@ -22,14 +22,10 @@ section p {
   font-size: 1.5em;
 }
 
-section #question {
-  font-size: 1.5em;
+section #buttons {
   display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  gap: 5px;
-}
-
-section #btn-start {
   width: 15%;
+  flex-flow: column wrap;
+  gap: 5px;
+  margin: 2% auto;
 }
