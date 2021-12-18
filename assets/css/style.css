@@ -6,7 +6,6 @@
 * {
   box-sizing: border-box;
   box-shadow: none;
-  font-family: 'Roboto', sans-serif;
 }
 
 #game-section,
@@ -65,4 +64,9 @@ a:link {
   flex-flow: column wrap;
   align-content: space-between;
   margin-left: 25%;
+}
+
+#scores-form {
+  max-width: 200px;
+  margin: 0 auto;
 }

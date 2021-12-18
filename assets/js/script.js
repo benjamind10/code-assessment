@@ -1,6 +1,8 @@
 // Selectors
 var timerEl = document.getElementById('timer');
 var mainBtnEl = document.getElementById('main-btn');
+var finalScoreEl = document.getElementById('final-score');
+var gameOverEl = document.getElementById('gameover-section');
 var mainSecEl = document.getElementById('main-section');
 var gameSecEl = document.getElementById('game-section');
 var highSecEl = document.getElementById('highscores-section');
@@ -10,6 +12,7 @@ var questionsEl = document.getElementById('questions');
 var buttonsEl = document.getElementById('buttons');
 var answersEl = document.getElementById('answers-section');
 var checkedEl = document.getElementById('checked');
+var formEl = document.getElementById('scores-form');
 
 // Questions Object
 var questObj = [
@@ -48,32 +51,62 @@ var questObj = [
 ];
 
 // Global Variables
-var timeLeft = 76;
 var counter;
+var timeLeft = 76;
 var cIndex = 0;
 var lIndex = questObj.length;
-var score = 0;
 
 // Event listener for main button
-mainBtnEl.addEventListener('click', function () {
-  gameStart();
-});
+mainBtnEl.addEventListener('click', gameStart);
 
 // Event listener for high scores
-scoreBtnEl.addEventListener('click', function () {
-  highScore();
-});
+scoreBtnEl.addEventListener('click', highScore);
+
+// Event listener for form
+formEl.addEventListener('submit', formHandler);
 
 // Event listener for reset quiz button
-resetBtnEl.addEventListener('click', function () {
-  highSecEl.style.display = 'none';
-  mainSecEl.style.display = 'block';
-});
+resetBtnEl.addEventListener('click', resetGame);
 
 function gameStart() {
   mainSecEl.style.display = 'none';
+  answersEl.style.display = 'block';
   makeQuestions();
   startTimer();
+}
+
+function highScore() {
+  mainSecEl.style.display = 'none';
+  gameSecEl.style.display = 'none';
+  answersEl.style.display = 'none';
+  gameOverEl.style.display = 'none';
+  highSecEl.style.display = 'block';
+}
+
+function gameOver() {
+  mainSecEl.style.display = 'none';
+  gameSecEl.style.display = 'none';
+  answersEl.style.display = 'none';
+  highSecEl.style.display = 'none';
+  gameOverEl.style.display = 'block';
+
+  clearInterval(counter);
+  timerEl.style.display = 'none';
+
+  if (timeLeft < 0) {
+    finalScoreEl.textContent = '0';
+  } else {
+    finalScoreEl.textContent = timeLeft;
+  }
+}
+
+function formHandler(e) {
+  e.preventDefault();
+}
+
+function resetGame() {
+  highSecEl.style.display = 'none';
+  mainSecEl.style.display = 'block';
 }
 
 function makeQuestions(index = 0) {
@@ -97,10 +130,10 @@ function makeButtons(question) {
   }
 }
 
-function createEventListener(node) {
-  if (node) {
-    node.addEventListener('click', function () {
-      validateListener(node);
+function createEventListener(btn) {
+  if (btn) {
+    btn.addEventListener('click', function () {
+      validateListener(btn);
     });
   } else {
     return 0;
@@ -123,14 +156,13 @@ function validateListener(choices) {
   answersEl.textContent = '';
 
   if (choice === answer && cIndex != lIndex) {
-    score++;
     cIndex++;
     isChecked.textContent = 'Correct!';
     answersEl.appendChild(isChecked);
     clearEl('choices');
     makeQuestions(cIndex);
   } else if (choice != answer && cIndex != lIndex) {
-    timeLeft -= 15;
+    timeLeft -= 10;
     cIndex++;
     isChecked.style.color = 'red';
     isChecked.textContent = 'Wrong!';
@@ -138,22 +170,8 @@ function validateListener(choices) {
     clearEl('choices');
     makeQuestions(cIndex);
   } else {
-    //   gameOver();
+    gameOver();
   }
-}
-
-function highScore() {
-  gameSecEl.style.display = 'none';
-  mainSecEl.style.display = 'none';
-  highSecEl.style.display = 'block';
-}
-
-function gameOver() {
-  mainSecEl.style.display = 'none';
-  gameSecEl.style;
-  console.log(timeLeft);
-  clearInterval(counter);
-  timerEl.style.display = 'none';
 }
 
 // Function to start the timer
@@ -164,7 +182,7 @@ function startTimer() {
 
     if (timeLeft === 0) {
       clearInterval(counter);
-      // highScore();
+      gameOver();
     }
   }, 1000);
 }
