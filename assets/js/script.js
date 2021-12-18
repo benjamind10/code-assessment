@@ -103,12 +103,12 @@ function createEventListener(node) {
       validateListener(node);
     });
   } else {
-    console('not working');
+    return 0;
   }
 }
 
-function clearButtons() {
-  var elements = document.getElementsByClassName('choices');
+function clearEl(className) {
+  var elements = document.getElementsByClassName(className);
 
   while (elements.length > 0) {
     elements[0].parentNode.removeChild(elements[0]);
@@ -119,15 +119,26 @@ function validateListener(choices) {
   var choice = parseInt(choices.id);
   var answer = questObj[cIndex].answer;
   var isChecked = document.createElement('p');
-  checkedEl.textContent = '';
+  isChecked.className = 'checked';
+  answersEl.textContent = '';
 
   if (choice === answer && cIndex != lIndex) {
     score++;
     cIndex++;
     isChecked.textContent = 'Correct!';
     answersEl.appendChild(isChecked);
-    clearButtons();
+    clearEl('choices');
     makeQuestions(cIndex);
+  } else if (choice != answer && cIndex != lIndex) {
+    timeLeft -= 15;
+    cIndex++;
+    isChecked.style.color = 'red';
+    isChecked.textContent = 'Wrong!';
+    answersEl.appendChild(isChecked);
+    clearEl('choices');
+    makeQuestions(cIndex);
+  } else {
+    //   gameOver();
   }
 }
 
@@ -140,6 +151,9 @@ function highScore() {
 function gameOver() {
   mainSecEl.style.display = 'none';
   gameSecEl.style;
+  console.log(timeLeft);
+  clearInterval(counter);
+  timerEl.style.display = 'none';
 }
 
 // Function to start the timer

@@ -33,6 +33,10 @@
   font-size: 3em;
 }
 
+.checked {
+  text-align: center;
+}
+
 button {
   background-color: var(--primary);
   border: none;
