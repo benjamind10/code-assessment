@@ -17,6 +17,7 @@ var initialsEl = document.getElementById('initials');
 var highScoreEl = document.getElementById('highscores-initials');
 var clearScoresEl = document.getElementById('clear-scores');
 var userEl = document.getElementById('user');
+var scoresInitials = document.getElementById('scores-initials');
 var highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
 // Questions Object
@@ -71,6 +72,7 @@ scoreBtnEl.addEventListener('click', function () {
   gameOverEl.style.display = 'none';
   highSecEl.style.display = 'block';
   highScoreEl.style.display = 'block';
+
   showHighScore();
 });
 
@@ -86,6 +88,7 @@ function clearScores() {
   highScores = [];
   highScoreEl.textContent = '';
   highScoreEl.style.display = 'none';
+  window.localStorage.clear();
 }
 
 function gameStart() {
@@ -96,13 +99,17 @@ function gameStart() {
 }
 
 function showHighScore() {
-  var tmp = 0;
+  userEl.textContent = '';
+  highScores.sort((a, b) => {
+    return b.score - a.score;
+  });
   for (var i = 0; i < highScores.length; i++) {
     var user = document.createElement('li');
     user.textContent =
       'Initials: ' + highScores[i].name + ' Score: ' + highScores[i].score;
     userEl.appendChild(user);
   }
+  scoresInitials.appendChild(userEl);
 }
 
 function gameOver() {
