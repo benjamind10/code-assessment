@@ -15,6 +15,10 @@ var checkedEl = document.getElementById('checked');
 var formEl = document.getElementById('scores-form');
 var initialsEl = document.getElementById('initials');
 var highScoreEl = document.getElementById('highscores-initials');
+var clearScoresEl = document.getElementById('clear-scores');
+var userEl = document.getElementById('user');
+var savedHighScores = localStorage.getItem('savedScores');
+var scoresObj = JSON.parse(savedHighScores);
 
 // Questions Object
 var questObj = [
@@ -53,14 +57,14 @@ var questObj = [
 ];
 
 // High Scores Object
-var highScores = {};
+var highScores = [];
 
 // Global Variables
 var counter;
 var timeLeft = 76;
 var cIndex = 0;
 var lIndex = questObj.length;
-var user = '';
+var savedScores = [];
 
 // Event listener for main button
 mainBtnEl.addEventListener('click', gameStart);
@@ -71,6 +75,8 @@ scoreBtnEl.addEventListener('click', function () {
   gameSecEl.style.display = 'none';
   gameOverEl.style.display = 'none';
   highSecEl.style.display = 'block';
+  highScoreEl.style.display = 'block';
+  showHighScore();
 });
 
 // Event listener for form
@@ -79,6 +85,14 @@ formEl.addEventListener('submit', formHandler);
 // Event listener for reset quiz button
 resetBtnEl.addEventListener('click', resetGame);
 
+clearScoresEl.addEventListener('click', clearScores);
+
+function clearScores() {
+  highScores = {};
+  highScoreEl.textContent = '';
+  highScoreEl.style.display = 'none';
+}
+
 function gameStart() {
   mainSecEl.style.display = 'none';
   answersEl.style.display = 'block';
@@ -86,12 +100,16 @@ function gameStart() {
   startTimer();
 }
 
-function updateScore() {
-  var user = document.createElement('p');
+function showHighScore() {
   highScoreEl.style.display = 'block';
-  user.innerHTML =
-    '<h4>' + 'Initials: ' + highScores.initials + ' Score: ' + highScores.score;
-  highScoreEl.appendChild(user);
+
+  debugger;
+  for (var i = 0; i < scoresObj.length; i++) {
+    var user = document.createElement('li');
+    user.textContent =
+      'Initials: ' + scoresObj[i].initials + ' Score: ' + scoresObj[i].score;
+    userEl.appendChild(user);
+  }
 }
 
 function gameOver() {
@@ -116,9 +134,13 @@ function formHandler(e) {
   e.preventDefault();
   var val = document.querySelector('input').value;
 
-  highScores.initials = val;
-  highScores.score = timeLeft;
-  updateScore();
+  var tmp = {
+    initials: val,
+    score: timeLeft,
+  };
+
+  highScores.push(tmp);
+  showHighScore();
   gameOverEl.style.display = 'none';
   answersEl.style.display = 'none';
   highSecEl.style.display = 'block';

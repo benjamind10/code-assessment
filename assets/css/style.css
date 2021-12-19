@@ -74,10 +74,6 @@ a:link {
   margin: 0 auto;
 }
 
-#highscores-initials {
-  border-style: solid;
-  border-color: var(--primary);
-  margin: 0 40%;
-  display: none;
-  background-color: lightgray;
+ul {
+  list-style-type: none;
 }
