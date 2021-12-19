@@ -17,8 +17,7 @@ var initialsEl = document.getElementById('initials');
 var highScoreEl = document.getElementById('highscores-initials');
 var clearScoresEl = document.getElementById('clear-scores');
 var userEl = document.getElementById('user');
-var savedHighScores = localStorage.getItem('savedScores');
-var scoresObj = JSON.parse(savedHighScores);
+var highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
 // Questions Object
 var questObj = [
@@ -56,15 +55,11 @@ var questObj = [
   },
 ];
 
-// High Scores Object
-var highScores = [];
-
 // Global Variables
 var counter;
 var timeLeft = 76;
 var cIndex = 0;
 var lIndex = questObj.length;
-var savedScores = [];
 
 // Event listener for main button
 mainBtnEl.addEventListener('click', gameStart);
@@ -88,7 +83,7 @@ resetBtnEl.addEventListener('click', resetGame);
 clearScoresEl.addEventListener('click', clearScores);
 
 function clearScores() {
-  highScores = {};
+  highScores = [];
   highScoreEl.textContent = '';
   highScoreEl.style.display = 'none';
 }
@@ -101,15 +96,13 @@ function gameStart() {
 }
 
 function showHighScore() {
-  highScoreEl.style.display = 'block';
-
-  debugger;
-  for (var i = 0; i < scoresObj.length; i++) {
-    var user = document.createElement('li');
-    user.textContent =
-      'Initials: ' + scoresObj[i].initials + ' Score: ' + scoresObj[i].score;
-    userEl.appendChild(user);
-  }
+  // highScoreEl.style.display = 'block';
+  // for (var i = 0; i < scoresObj.length; i++) {
+  //   var user = document.createElement('li');
+  //   user.textContent =
+  //     'Initials: ' + scoresObj[i].initials + ' Score: ' + scoresObj[i].score;
+  //   userEl.appendChild(user);
+  // }
 }
 
 function gameOver() {
@@ -132,18 +125,19 @@ function gameOver() {
 
 function formHandler(e) {
   e.preventDefault();
-  var val = document.querySelector('input').value;
-
-  var tmp = {
-    initials: val,
-    score: timeLeft,
-  };
-
-  highScores.push(tmp);
-  showHighScore();
   gameOverEl.style.display = 'none';
   answersEl.style.display = 'none';
   highSecEl.style.display = 'block';
+
+  if (initialsEl.value === '') {
+    alert('Initials can not be blank');
+  } else {
+    var cUser = initialsEl.value.trim();
+    var cHighScore = { name: cUser, score: timeLeft };
+  }
+
+  highScores.push(cHighScore);
+  localStorage.setItem('highScores', JSON.stringify(highScores));
 }
 
 function resetGame() {
