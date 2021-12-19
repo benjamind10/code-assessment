@@ -40,15 +40,19 @@
             <h2>Your final score is:&nbsp;<span id="final-score"></span></h2>
             <h4>Enter Your Initials:</h4>
             <form class="ui form" id="scores-form">
-                <input class="field">
+                <input class="field" id="initials">
+                <input type="submit" id="submit-score" value="Submit">
             </form>
         </div>
     </section>
     <section id="highscores-section">
         <div id="highscores-text" class="container">
             <h1>High Scores</h1>
-            <p></p>
+            <div id="highscores-initials"></div>
+            <div id="highscore-display"></div>
+            <br>
             <button id="reset-btn">Reset Quiz</button>
+            <button id="clear-scores">Clear HighScores</button>
         </div>
     </section>
     <script src="./assets/js/script.js"></script>

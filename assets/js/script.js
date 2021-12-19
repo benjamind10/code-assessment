@@ -13,6 +13,8 @@ var buttonsEl = document.getElementById('buttons');
 var answersEl = document.getElementById('answers-section');
 var checkedEl = document.getElementById('checked');
 var formEl = document.getElementById('scores-form');
+var initialsEl = document.getElementById('initials');
+var highScoreEl = document.getElementById('highscores-initials');
 
 // Questions Object
 var questObj = [
@@ -50,17 +52,26 @@ var questObj = [
   },
 ];
 
+// High Scores Object
+var highScores = {};
+
 // Global Variables
 var counter;
 var timeLeft = 76;
 var cIndex = 0;
 var lIndex = questObj.length;
+var user = '';
 
 // Event listener for main button
 mainBtnEl.addEventListener('click', gameStart);
 
 // Event listener for high scores
-scoreBtnEl.addEventListener('click', highScore);
+scoreBtnEl.addEventListener('click', function () {
+  mainSecEl.style.display = 'none';
+  gameSecEl.style.display = 'none';
+  gameOverEl.style.display = 'none';
+  highSecEl.style.display = 'block';
+});
 
 // Event listener for form
 formEl.addEventListener('submit', formHandler);
@@ -75,20 +86,21 @@ function gameStart() {
   startTimer();
 }
 
-function highScore() {
-  mainSecEl.style.display = 'none';
-  gameSecEl.style.display = 'none';
-  answersEl.style.display = 'none';
-  gameOverEl.style.display = 'none';
-  highSecEl.style.display = 'block';
+function updateScore() {
+  var user = document.createElement('p');
+  highScoreEl.style.display = 'block';
+  user.innerHTML =
+    '<h4>' + 'Initials: ' + highScores.initials + ' Score: ' + highScores.score;
+  highScoreEl.appendChild(user);
 }
 
 function gameOver() {
   mainSecEl.style.display = 'none';
   gameSecEl.style.display = 'none';
-  answersEl.style.display = 'none';
   highSecEl.style.display = 'none';
   gameOverEl.style.display = 'block';
+
+  gameOverEl.appendChild(answersEl);
 
   clearInterval(counter);
   timerEl.style.display = 'none';
@@ -102,11 +114,21 @@ function gameOver() {
 
 function formHandler(e) {
   e.preventDefault();
+  var val = document.querySelector('input').value;
+
+  highScores.initials = val;
+  highScores.score = timeLeft;
+  updateScore();
+  gameOverEl.style.display = 'none';
+  answersEl.style.display = 'none';
+  highSecEl.style.display = 'block';
 }
 
 function resetGame() {
   highSecEl.style.display = 'none';
   mainSecEl.style.display = 'block';
+  cIndex = 0;
+  timeLeft = 76;
 }
 
 function makeQuestions(index = 0) {

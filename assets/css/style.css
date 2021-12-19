@@ -26,6 +26,7 @@
 
 .container {
   text-align: center;
+  margin: 5%;
 }
 
 .container h1 {
@@ -36,7 +37,8 @@
   text-align: center;
 }
 
-button {
+button,
+#submit-score {
   background-color: var(--primary);
   border: none;
   color: white;
@@ -68,5 +70,14 @@ a:link {
 
 #scores-form {
   max-width: 200px;
+
   margin: 0 auto;
+}
+
+#highscores-initials {
+  border-style: solid;
+  border-color: var(--primary);
+  margin: 0 40%;
+  display: none;
+  background-color: lightgray;
 }
