@@ -96,13 +96,13 @@ function gameStart() {
 }
 
 function showHighScore() {
-  // highScoreEl.style.display = 'block';
-  // for (var i = 0; i < scoresObj.length; i++) {
-  //   var user = document.createElement('li');
-  //   user.textContent =
-  //     'Initials: ' + scoresObj[i].initials + ' Score: ' + scoresObj[i].score;
-  //   userEl.appendChild(user);
-  // }
+  var tmp = 0;
+  for (var i = 0; i < highScores.length; i++) {
+    var user = document.createElement('li');
+    user.textContent =
+      'Initials: ' + highScores[i].name + ' Score: ' + highScores[i].score;
+    userEl.appendChild(user);
+  }
 }
 
 function gameOver() {
@@ -138,6 +138,7 @@ function formHandler(e) {
 
   highScores.push(cHighScore);
   localStorage.setItem('highScores', JSON.stringify(highScores));
+  showHighScore();
 }
 
 function resetGame() {
