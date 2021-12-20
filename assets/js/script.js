@@ -11,13 +11,13 @@ var resetBtnEl = document.getElementById('reset-btn');
 var questionsEl = document.getElementById('questions');
 var buttonsEl = document.getElementById('buttons');
 var answersEl = document.getElementById('answers-section');
-var checkedEl = document.getElementById('checked');
+// var checkedEl = document.getElementById('checked'); line pending removal
 var formEl = document.getElementById('scores-form');
 var initialsEl = document.getElementById('initials');
 var highScoreEl = document.getElementById('highscores-initials');
 var clearScoresEl = document.getElementById('clear-scores');
 var userEl = document.getElementById('user');
-var scoresInitials = document.getElementById('scores-initials');
+// var scoresInitials = document.getElementById('scores-initials'); line pending removal
 var highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
 // Questions Object
@@ -88,6 +88,7 @@ function clearScores() {
   highScoreEl.textContent = '';
   highScoreEl.style.display = 'none';
   window.localStorage.clear();
+  timeLeft = 76;
 }
 
 function gameStart() {
@@ -153,6 +154,8 @@ function resetGame() {
   mainSecEl.style.display = 'block';
   cIndex = 0;
   timeLeft = 76;
+  timerEl.style.display = 'block';
+  timerEl.textContent = 'Time Left: ' + 0;
 }
 
 function makeQuestions(index = 0) {
