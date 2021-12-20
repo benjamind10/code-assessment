@@ -72,7 +72,6 @@ scoreBtnEl.addEventListener('click', function () {
   gameOverEl.style.display = 'none';
   highSecEl.style.display = 'block';
   highScoreEl.style.display = 'block';
-
   showHighScore();
 });
 
@@ -109,7 +108,7 @@ function showHighScore() {
       'Initials: ' + highScores[i].name + ' Score: ' + highScores[i].score;
     userEl.appendChild(user);
   }
-  scoresInitials.appendChild(userEl);
+  highScoreEl.appendChild(userEl);
 }
 
 function gameOver() {
@@ -146,6 +145,7 @@ function formHandler(e) {
   highScores.push(cHighScore);
   localStorage.setItem('highScores', JSON.stringify(highScores));
   showHighScore();
+  highScoreEl.style.display = 'block';
 }
 
 function resetGame() {
