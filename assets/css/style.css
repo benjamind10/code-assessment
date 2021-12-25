@@ -1,13 +1,16 @@
+/* Glbal color variables */
 :root {
   --primary: #31682a;
   --second: #4fee3a;
 }
 
+/* Universal rules */
 * {
   box-sizing: border-box;
   box-shadow: none;
 }
 
+/* Controls the background image */
 #background-image {
   background-image: url(../images/bg.jpg);
   height: 100%;
@@ -29,6 +32,7 @@ li {
   font-size: 1.6em;
 }
 
+/* Containers  */
 #game-section,
 #gameover-section,
 #highscores-section {
@@ -58,6 +62,26 @@ li {
   text-align: center;
 }
 
+#game-section #buttons {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: space-between;
+  margin-left: 25%;
+}
+
+#scores-form {
+  max-width: 200px;
+
+  margin: 0 auto;
+}
+
+ul {
+  list-style-type: none;
+  padding-right: 2%;
+  display: block;
+}
+
+/* Buttons  */
 button,
 #submit-score {
   background-color: var(--primary);
@@ -84,23 +108,4 @@ a:link {
 
 a:visited {
   color: white;
-}
-
-#game-section #buttons {
-  display: flex;
-  flex-flow: column wrap;
-  align-content: space-between;
-  margin-left: 25%;
-}
-
-#scores-form {
-  max-width: 200px;
-
-  margin: 0 auto;
-}
-
-ul {
-  list-style-type: none;
-  padding-right: 2%;
-  display: block;
 }
