@@ -11,56 +11,59 @@
 </head>
 
 <body>
-    <header id="header-section">
-        <a href="#high-scores" id="high-scores">High Scores</a>
-        <p id="timer">Time:&nbsp;<span id="timer">0</span></p>
-    </header>
-    <section id="main-section">
-        <div id="main-text" class="container">
-            <h1>Coding Quiz</h1>
-            <h4>Try to answer the following code questions within the allowed time. Incorrect answers will be penalized
-                with 10 seconds off the clock/score.</h4>
-            <button id="main-btn">Start Quiz</button>
-        </div>
-    </section>
-    <section id="game-section">
-        <div id="game-text" class="container">
-            <h1 id="questions">Questions</h1>
-            <div id="buttons"></div>
-        </div>
-    </section>
-    <section id="answers-section">
-        <div id="answers-text" class="container">
-            <p id="checked"></p>
-        </div>
-    </section>
-    <section id="gameover-section">
-        <div id="gameover-text" class="container">
-            <h1>All Done!</h1>
-            <h2>Your final score is:&nbsp;<span id="final-score"></span></h2>
-            <h4>Enter Your Initials:</h4>
-            <form class="ui form" id="scores-form">
-                <input class="field" id="initials">
-                <input type="submit" id="submit-score" value="Submit">
-            </form>
-        </div>
-    </section>
-    <section id="highscores-section">
-        <div id="highscores-text" class="container">
-            <h1 id="scores-initals">High Scores</h1>
-            <div id="highscores-initials">
-                <ul id="user">
+    <div id="background-image">
 
-                </ul>
-
+        <header id="header-section">
+            <a href="#high-scores" id="high-scores">High Scores</a>
+            <p id="timer">Time Left:&nbsp;<span id="timer">0</span></p>
+        </header>
+        <section id="main-section">
+            <div id="main-text" class="container">
+                <h1>Coding Quiz</h1>
+                <h4>Try to answer the following code questions within the allowed time. Incorrect answers will be
+                    penalized
+                    with 10 seconds off the clock/score.</h4>
+                <button id="main-btn">Start Quiz</button>
             </div>
-            <div id="highscore-display"></div>
-            <br>
-            <button id="reset-btn">Reset Quiz</button>
-            <button id="clear-scores">Clear HighScores</button>
-        </div>
-    </section>
-    <script src="./assets/js/script.js"></script>
+        </section>
+        <section id="game-section">
+            <div id="game-text" class="container">
+                <h1 id="questions">Questions</h1>
+                <div id="buttons"></div>
+            </div>
+        </section>
+        <section id="answers-section">
+            <div id="answers-text" class="container">
+                <p id="checked"></p>
+            </div>
+        </section>
+        <section id="gameover-section">
+            <div id="gameover-text" class="container">
+                <h1>All Done!</h1>
+                <h2>Your final score is:&nbsp;<span id="final-score"></span></h2>
+                <h4>Enter Your Initials:</h4>
+                <form class="ui form" id="scores-form">
+                    <input class="field" id="initials">
+                    <input type="submit" id="submit-score" value="Submit">
+                </form>
+            </div>
+        </section>
+        <section id="highscores-section">
+            <div id="highscores-text" class="container">
+                <h1 id="scores-initals">High Scores</h1>
+                <div id="highscores-initials">
+                    <ul id="user">
+
+                    </ul>
+                </div>
+                <div id="highscore-display"></div>
+                <br>
+                <button id="reset-btn">Reset Quiz</button>
+                <button id="clear-scores">Clear HighScores</button>
+            </div>
+        </section>
+        <script src="./assets/js/script.js"></script>
+    </div>
 </body>
 
 </html>

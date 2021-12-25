@@ -8,6 +8,27 @@
   box-shadow: none;
 }
 
+#background-image {
+  background-image: url(../images/bg.jpg);
+  height: 100%;
+  background-size: cover;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+span,
+li {
+  color: white;
+}
+
+h4,
+li {
+  font-size: 1.6em;
+}
+
 #game-section,
 #gameover-section,
 #highscores-section {
@@ -58,7 +79,11 @@ button:hover {
 }
 
 a:link {
-  color: var(--primary);
+  color: white;
+}
+
+a:visited {
+  color: white;
 }
 
 #game-section #buttons {

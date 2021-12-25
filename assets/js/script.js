@@ -11,13 +11,11 @@ var resetBtnEl = document.getElementById('reset-btn');
 var questionsEl = document.getElementById('questions');
 var buttonsEl = document.getElementById('buttons');
 var answersEl = document.getElementById('answers-section');
-// var checkedEl = document.getElementById('checked'); line pending removal
 var formEl = document.getElementById('scores-form');
 var initialsEl = document.getElementById('initials');
 var highScoreEl = document.getElementById('highscores-initials');
 var clearScoresEl = document.getElementById('clear-scores');
 var userEl = document.getElementById('user');
-// var scoresInitials = document.getElementById('scores-initials'); line pending removal
 var highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
 // Questions Object
@@ -28,8 +26,14 @@ var questObj = [
     answer: 1,
   },
   {
-    title: 'The condition in an if / else statement is enclosed with ________.',
-    options: ['quotes', 'curly brackets', 'parenthesis', 'square brackets'],
+    title:
+      'The condition in an if / else statement is enclosed with ________.',
+    options: [
+      'quotes',
+      'curly brackets',
+      'parenthesis',
+      'square brackets',
+    ],
     answer: 2,
   },
   {
@@ -51,7 +55,12 @@ var questObj = [
   {
     title:
       'A very useful tool during development and debugging for printing content to the debugger is ________.',
-    options: ['JavaScript', 'terminal/bash', 'for loops', 'console.log'],
+    options: [
+      'JavaScript',
+      'terminal/bash',
+      'for loops',
+      'console.log',
+    ],
     answer: 3,
   },
 ];
@@ -81,16 +90,19 @@ formEl.addEventListener('submit', formHandler);
 // Event listener for reset quiz button
 resetBtnEl.addEventListener('click', resetGame);
 
+// Clear scores on click
 clearScoresEl.addEventListener('click', clearScores);
 
 function clearScores() {
+  // Sets the session storage highscores to a blank array
   highScores = [];
   highScoreEl.textContent = '';
   highScoreEl.style.display = 'none';
-  window.localStorage.clear();
-  timeLeft = 76;
+  window.localStorage.clear(); // Clears the local storage
+  timeLeft = 76; //Resets the timer
 }
 
+// Starts the game and calls new functions
 function gameStart() {
   mainSecEl.style.display = 'none';
   answersEl.style.display = 'block';
@@ -98,7 +110,10 @@ function gameStart() {
   startTimer();
 }
 
+// This function helps print the high score sorted from highest to lowest.
 function showHighScore() {
+  clearInterval(counter);
+  timerEl.textContent = 'Time Left: ' + 0;
   userEl.textContent = '';
   highScores.sort((a, b) => {
     return b.score - a.score;
@@ -106,12 +121,16 @@ function showHighScore() {
   for (var i = 0; i < highScores.length; i++) {
     var user = document.createElement('li');
     user.textContent =
-      'Initials: ' + highScores[i].name + ' Score: ' + highScores[i].score;
+      'Initials: ' +
+      highScores[i].name +
+      ' Score: ' +
+      highScores[i].score;
     userEl.appendChild(user);
   }
   highScoreEl.appendChild(userEl);
 }
 
+// Function to end the game and display your current high score.
 function gameOver() {
   mainSecEl.style.display = 'none';
   gameSecEl.style.display = 'none';
@@ -123,6 +142,7 @@ function gameOver() {
   clearInterval(counter);
   timerEl.style.display = 'none';
 
+  // Conditional to check if the timer is below 0 to only display 0
   if (timeLeft < 0) {
     finalScoreEl.textContent = '0';
   } else {
@@ -130,18 +150,15 @@ function gameOver() {
   }
 }
 
+// This handler will help the form submission
 function formHandler(e) {
   e.preventDefault();
   gameOverEl.style.display = 'none';
   answersEl.style.display = 'none';
   highSecEl.style.display = 'block';
 
-  if (initialsEl.value === '') {
-    alert('Initials can not be blank');
-  } else {
-    var cUser = initialsEl.value.trim();
-    var cHighScore = { name: cUser, score: timeLeft };
-  }
+  var cUser = initialsEl.value.trim();
+  var cHighScore = { name: cUser, score: timeLeft };
 
   highScores.push(cHighScore);
   localStorage.setItem('highScores', JSON.stringify(highScores));
@@ -149,6 +166,7 @@ function formHandler(e) {
   highScoreEl.style.display = 'block';
 }
 
+// Function to reset the game
 function resetGame() {
   highSecEl.style.display = 'none';
   mainSecEl.style.display = 'block';
@@ -158,6 +176,7 @@ function resetGame() {
   timerEl.textContent = 'Time Left: ' + 0;
 }
 
+// Generates question function loops through the object every time a new question generates
 function makeQuestions(index = 0) {
   gameSecEl.style.display = 'block';
   var activeQ = questObj[index];
@@ -168,6 +187,7 @@ function makeQuestions(index = 0) {
   makeButtons(activeQ.options);
 }
 
+// This function loops through the object array for the anwers and makes the answers buttons
 function makeButtons(question) {
   for (var i = 0; i < question.length; i++) {
     var btn = document.createElement('button');
@@ -179,6 +199,7 @@ function makeButtons(question) {
   }
 }
 
+// This a helper function that creates the event listeners for the buttons
 function createEventListener(btn) {
   if (btn) {
     btn.addEventListener('click', function () {
@@ -189,6 +210,7 @@ function createEventListener(btn) {
   }
 }
 
+// This helper fucntion clears the class name of the needed element.
 function clearEl(className) {
   var elements = document.getElementsByClassName(className);
 
@@ -197,6 +219,7 @@ function clearEl(className) {
   }
 }
 
+// Function that will validate the answers being selected by the user and keep track of the score.
 function validateListener(choices) {
   var choice = parseInt(choices.id);
   var answer = questObj[cIndex].answer;
