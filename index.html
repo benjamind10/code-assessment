@@ -12,11 +12,12 @@
 
 <body>
     <div id="background-image">
-
+        <!-- Header section that contains the timer and high score button -->
         <header id="header-section">
             <a href="#high-scores" id="high-scores">High Scores</a>
             <p id="timer">Time Left:&nbsp;<span id="timer">0</span></p>
         </header>
+        <!-- Main section area that dynamically shows elements below -->
         <section id="main-section">
             <div id="main-text" class="container">
                 <h1>Coding Quiz</h1>
@@ -26,6 +27,7 @@
                 <button id="main-btn">Start Quiz</button>
             </div>
         </section>
+        <!-- Elements that dynamically show as the game progresses -->
         <section id="game-section">
             <div id="game-text" class="container">
                 <h1 id="questions">Questions</h1>
@@ -37,6 +39,7 @@
                 <p id="checked"></p>
             </div>
         </section>
+        <!-- Game over section also dynamically displays when game ends -->
         <section id="gameover-section">
             <div id="gameover-text" class="container">
                 <h1>All Done!</h1>
@@ -48,6 +51,7 @@
                 </form>
             </div>
         </section>
+        <!-- This area displays when the header button is clicked or form submission -->
         <section id="highscores-section">
             <div id="highscores-text" class="container">
                 <h1 id="scores-initals">High Scores</h1>
@@ -62,8 +66,8 @@
                 <button id="clear-scores">Clear HighScores</button>
             </div>
         </section>
-        <script src="./assets/js/script.js"></script>
     </div>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
