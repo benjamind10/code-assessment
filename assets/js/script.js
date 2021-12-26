@@ -77,6 +77,7 @@ mainBtnEl.addEventListener('click', gameStart);
 // Event listener for high scores
 scoreBtnEl.addEventListener('click', function () {
   mainSecEl.style.display = 'none';
+  gameOverEl.style.display = 'none';
   highSecEl.style.display = 'block';
   showHighScore();
 });
