@@ -115,6 +115,7 @@ function showHighScore() {
   highScores.sort((a, b) => {
     return b.score - a.score;
   });
+  // This loop will print the high scores
   for (var i = 0; i < highScores.length; i++) {
     var user = document.createElement('li');
     user.textContent =
@@ -130,6 +131,7 @@ function showHighScore() {
 // Function to end the game and display your current high score.
 function gameOver() {
   gameSecEl.style.display = 'none';
+  highSecEl.style.display = 'none';
   gameOverEl.style.display = 'block';
 
   gameOverEl.appendChild(answersEl);
@@ -161,7 +163,7 @@ function formHandler(e) {
     var cHighScore = { name: cUser, score: timeLeft };
 
     if (cHighScore.name === '') {
-      return console.log('Name was empty');
+      return false;
     } else {
       highScores.push(cHighScore);
       localStorage.setItem('highScores', JSON.stringify(highScores));
