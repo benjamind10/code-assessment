@@ -153,17 +153,28 @@ function gameOver() {
 // This handler will help the form submission
 function formHandler(e) {
   e.preventDefault();
+  debugger;
   gameOverEl.style.display = 'none';
   answersEl.style.display = 'none';
   highSecEl.style.display = 'block';
 
-  var cUser = initialsEl.value.trim();
-  var cHighScore = { name: cUser, score: timeLeft };
+  if (initialsEl.value === '' || initialsEl.value.length > 3) {
+    alert('Initials must be between 1-3 chars.');
+    gameOver();
+    return false;
+  } else {
+    var cUser = initialsEl.value.trim();
+    var cHighScore = { name: cUser, score: timeLeft };
 
-  highScores.push(cHighScore);
-  localStorage.setItem('highScores', JSON.stringify(highScores));
-  showHighScore();
-  highScoreEl.style.display = 'block';
+    if (cHighScore.name === '') {
+      return console.log('Name was empty');
+    } else {
+      highScores.push(cHighScore);
+      localStorage.setItem('highScores', JSON.stringify(highScores));
+      showHighScore();
+      highScoreEl.style.display = 'block';
+    }
+  }
 }
 
 // Function to reset the game
