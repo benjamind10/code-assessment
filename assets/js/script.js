@@ -77,10 +77,7 @@ mainBtnEl.addEventListener('click', gameStart);
 // Event listener for high scores
 scoreBtnEl.addEventListener('click', function () {
   mainSecEl.style.display = 'none';
-  gameSecEl.style.display = 'none';
-  gameOverEl.style.display = 'none';
   highSecEl.style.display = 'block';
-  highScoreEl.style.display = 'block';
   showHighScore();
 });
 
@@ -132,9 +129,7 @@ function showHighScore() {
 
 // Function to end the game and display your current high score.
 function gameOver() {
-  mainSecEl.style.display = 'none';
   gameSecEl.style.display = 'none';
-  highSecEl.style.display = 'none';
   gameOverEl.style.display = 'block';
 
   gameOverEl.appendChild(answersEl);
@@ -153,7 +148,6 @@ function gameOver() {
 // This handler will help the form submission
 function formHandler(e) {
   e.preventDefault();
-  debugger;
   gameOverEl.style.display = 'none';
   answersEl.style.display = 'none';
   highSecEl.style.display = 'block';
